@@ -27,9 +27,17 @@ class NaverLandCrawler(BaseCrawler):
 
         listings = self.parser.parse(response.text, source_url=target_url)
         limited_listings = listings[: settings.crawl_max_listings_per_url]
+        parser_message = None
+        if not limited_listings:
+            parser_message = (
+                "HTTP response was fetched, but listing JSON was not found in the static response."
+            )
         return CrawlResult(
             source_url_id=source_url_id,
             source_type="NAVER_LAND",
             listings=limited_listings,
             request_logs=self.request_logs,
+            raw_length=len(response.text),
+            raw_preview=response.text[:2000],
+            parser_message=parser_message,
         )

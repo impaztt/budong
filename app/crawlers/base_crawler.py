@@ -25,6 +25,9 @@ class CrawlResult:
     source_type: str
     listings: list[dict[str, Any]]
     request_logs: list[dict[str, Any]] = field(default_factory=list)
+    raw_length: int = 0
+    raw_preview: str | None = None
+    parser_message: str | None = None
 
 
 class BaseCrawler:

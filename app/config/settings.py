@@ -36,6 +36,7 @@ class Settings:
     crawl_max_seconds_per_url: int
     export_dir: Path
     log_dir: Path
+    local_data_dir: Path
     log_level: str
 
     @property
@@ -55,6 +56,7 @@ def get_settings() -> Settings:
         crawl_max_seconds_per_url=_get_int("CRAWL_MAX_SECONDS_PER_URL", 600),
         export_dir=Path(os.getenv("EXPORT_DIR", "./exports")),
         log_dir=Path(os.getenv("LOG_DIR", "./logs")),
+        local_data_dir=Path(os.getenv("LOCAL_DATA_DIR", "./data")),
         log_level=os.getenv("LOG_LEVEL", "INFO"),
     )
 

@@ -9,5 +9,6 @@ __pycache__/
 logs/
 exports/
 raw_responses/
+data/
 
 .idea/

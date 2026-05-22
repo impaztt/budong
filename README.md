@@ -40,9 +40,22 @@ http://127.0.0.1:8000/docs
 http://127.0.0.1:8000/api/sources
 http://127.0.0.1:8000/api/listings
 http://127.0.0.1:8000/api/listings?source_id=1
+http://127.0.0.1:8000/view
 ```
 
-직접 URL 수집 후 JSON으로 조회:
+Supabase 설정 없이 로컬 파일에만 저장해서 JSON으로 확인:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/crawl-url-local ^
+  -H "Content-Type: application/json" ^
+  -d "{\"url\":\"https://naver.me/FtoGnVDq\",\"memo\":\"로컬 미리보기\"}"
+
+curl http://127.0.0.1:8000/api/listings-local
+```
+
+브라우저에서는 `http://127.0.0.1:8000/view`에서 URL을 입력하고 JSON 결과를 바로 확인할 수 있습니다.
+
+Supabase 설정 후 DB에 저장하면서 수집:
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/crawl-url ^
